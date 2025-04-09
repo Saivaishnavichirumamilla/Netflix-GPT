@@ -3,8 +3,12 @@
 - vite
 - configured Tailwind CSS
 - Header
+- Routing of APP
 - Login form
 - Sign up form
+- Form validation
+- useRef Hook
+- firebase setup and deploying our app to production
 
 # Features
 
