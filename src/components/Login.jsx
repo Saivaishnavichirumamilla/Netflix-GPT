@@ -1,7 +1,31 @@
 import Header from "./Header";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { checkValidSignInData, checkValidSignUpData } from "../utils/validate";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const confirmPassword = useRef(null);
+  const handleButtonClick = () => {
+    if (isSignIn) {
+      const message = checkValidSignInData(
+        email.current.value,
+        password.current.value
+      );
+
+      setErrorMessage(message);
+    } else {
+      const message = checkValidSignUpData(
+        email.current.value,
+        password.current.value,
+        confirmPassword.current.value
+      );
+      setErrorMessage(message);
+    }
+  };
+
   const toggleSignIn = () => {
     setIsSignIn(!isSignIn);
   };
@@ -16,29 +40,36 @@ const Login = () => {
         />
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
-        <form className="absolute top-2/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-black/75 w-4/12 px-12 py-10 mt-14">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="absolute top-2/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-black/75 w-4/12 px-12 py-10 mt-14"
+        >
           <h1 className="text-white p-2 m-2 text-2xl font-bold">
             {isSignIn ? "Sign In" : "Sign UP"}
           </h1>
           <input
+            ref={email}
             type="text"
             placeholder="Email address"
             className="p-3 m-3 w-full text-white text-lg  border-[0.1px] border-gray-300 rounded"
           />
           <input
+            ref={password}
             type="password"
             placeholder={isSignIn ? "Password" : "New Password"}
             className="p-3 m-3 w-full text-white text-lg border-[0.5px] border-gray-300 rounded"
           />
           {!isSignIn && (
             <input
+              ref={confirmPassword}
               type="password"
               placeholder=" Confirm Password"
               className="p-3 m-3 w-full text-white text-lg border-[0.5px] border-gray-300 rounded"
             />
           )}
-
+          <p className="text-red-500 text-md m-3">{errorMessage}</p>
           <button
+            onClick={handleButtonClick}
             type="submit"
             className="p-2 m-3 w-full text-white bg-red-600  text-lg"
           >
