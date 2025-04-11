@@ -10,6 +10,10 @@
 - useRef Hook
 - firebase setup and deploying our app to production
 - Create SignUp user account
+- User authentication via email & Password//Implement Sigin user API
+- install redux toolkit "npm i -D @reduxjs/toolkit && npm i react-redux"
+- Created REDUX store with userSlice
+- useNavigate hook && useLocation hook
 
 # Features
 

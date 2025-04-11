@@ -4,13 +4,19 @@ import { checkValidSignInData, checkValidSignUpData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const navigate = useNavigate();
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const confirmPassword = useRef(null);
@@ -42,6 +48,23 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+          })
+            .then(() => {
+              dispatch(
+                addUser({
+                  uid: user.uid,
+                  email: user.email,
+                  name: user.displayName,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -58,7 +81,9 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+
           console.log("user signed in");
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -89,6 +114,15 @@ const Login = () => {
           <h1 className="text-white p-2 m-2 text-2xl font-bold">
             {isSignIn ? "Sign In" : "Sign UP"}
           </h1>
+          {!isSignIn && (
+            <input
+              ref={name}
+              type="text"
+              placeholder="User Name"
+              className="p-3 m-3 w-full text-white text-lg  border-[0.1px] border-gray-300 rounded"
+            />
+          )}
+
           <input
             ref={email}
             type="text"
