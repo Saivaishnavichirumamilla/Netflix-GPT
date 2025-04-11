@@ -1,6 +1,12 @@
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidSignInData, checkValidSignUpData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -23,6 +29,42 @@ const Login = () => {
         confirmPassword.current.value
       );
       setErrorMessage(message);
+    }
+    if (errorMessage) return;
+    //Sign in /Sign Up logic
+
+    if (!isSignIn) {
+      //SignUp Logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Signup error:", errorCode, errorMessage);
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      //SignIn Logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("user signed in");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
     }
   };
 
@@ -71,7 +113,7 @@ const Login = () => {
           <button
             onClick={handleButtonClick}
             type="submit"
-            className="p-2 m-3 w-full text-white bg-red-600  text-lg"
+            className="p-2 m-3 w-full text-white bg-red-600  text-lg cursor-pointer"
           >
             {isSignIn ? "Sign In" : "Sign UP"}
           </button>
