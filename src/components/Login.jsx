@@ -9,13 +9,14 @@ import {
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
+import { LOGIN_BG_POSTER } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
+
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -59,7 +60,6 @@ const Login = () => {
                   name: user.displayName,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -83,7 +83,6 @@ const Login = () => {
           const user = userCredential.user;
 
           console.log("user signed in");
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -102,7 +101,7 @@ const Login = () => {
       <div className="relative">
         <img
           className="bg-gradient-to-b from-black"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/98df3030-1c2b-4bd1-a2f5-13c611857edb/web/IN-en-20250331-TRIFECTA-perspective_247b6f06-c36d-4dff-a8eb-4013325c3f8e_large.jpg"
+          src={LOGIN_BG_POSTER}
           alt="background poster"
         />
         <div className="absolute inset-0 bg-black opacity-50"></div>

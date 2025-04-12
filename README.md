@@ -13,7 +13,12 @@
 - User authentication via email & Password//Implement Sigin user API
 - install redux toolkit "npm i -D @reduxjs/toolkit && npm i react-redux"
 - Created REDUX store with userSlice
-- useNavigate hook && useLocation hook
+- useNavigate hook
+- Implemented Sign Out
+- Update profile
+- BugFix: if the user is not logged in Redirect /Browse to Login page and vice versa.
+- Unsubscribed to the onAuthStateChange callback
+- Add hardcoded values to the constant values
 
 # Features
 
