@@ -34,7 +34,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="absolute z-10 w-screen h-16 bg-gradient-to-b from-black flex justify-between items-center">
+    <div className="absolute z-10 w-screen h-16  bg-gradient-to-b from-black flex justify-between items-center ">
       <img className="w-33 h-12 m-10 " src={LOGO} alt="logo" />
       <div className="mr-6 m-3 ">
         {user && (
