@@ -3,11 +3,14 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 
+import usePopularAndUpcomingMovies from "../hooks/useTopRatedAndUpcomingMovies";
+import useTopRatedAndUpcomingMovies from "../hooks/useTopRatedAndUpcomingMovies";
+
 const Browse = () => {
   useNowPlayingMovies();
-
+  useTopRatedAndUpcomingMovies();
   return (
-    <div className="min-h-screen">
+    <div className=" ">
       <Header />
       <MainContainer />
       <SecondaryContainer />
