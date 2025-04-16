@@ -8,7 +8,11 @@ const MovieList = (props) => {
       <div className="flex overflow-x-scroll no-scrollbar ">
         <div className="flex gap-3">
           {movies?.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.backdrop_path} />
+            <MovieCard
+              key={movie.id}
+              posterPath={movie.backdrop_path}
+              title={movie.title}
+            />
           ))}
         </div>
       </div>
