@@ -31,3 +31,9 @@ export const PLAY_BTN = (
 );
 
 export const TMDB_IMG_CDN_URL = "https://image.tmdb.org/t/p/w400";
+
+export const Supported_Languages = [
+  { identifier: "en", value: "English" },
+  { identifier: "hindi", value: "Hindi" },
+  { identifier: "telugu", value: "Telugu" },
+];

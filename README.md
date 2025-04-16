@@ -35,7 +35,9 @@
 - TMDB Image CDN Url
 - Made the browse pagr amazing with Tailwind CSS
 - useTopRatedMoviesAndUpcoming
-- Created Search bar
+- GPT Search Page
+- GPT Search bar
+- MultiLanguage feature in GPT Page \*\*\*\*
 
 # Features
 
