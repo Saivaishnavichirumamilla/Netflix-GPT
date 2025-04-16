@@ -5,12 +5,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO } from "../utils/constants";
+import { toggleGPTSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
+  const handleGPTSearch = () => {
+    dispatch(toggleGPTSearchView());
+  };
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
@@ -39,6 +43,12 @@ const Header = () => {
       <div className="mr-6 m-3 ">
         {user && (
           <div className="flex gap-4 items-center">
+            <button
+              onClick={handleGPTSearch}
+              className="bg-purple-600 text-white px-4 font-medium py-1 m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 "
+            >
+              Ask GPT
+            </button>
             <div className="text-white text-lg cursor-pointer">
               {user?.name}
             </div>

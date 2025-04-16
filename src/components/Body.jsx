@@ -1,4 +1,5 @@
 import Browse from "./Browse";
+import GPTSearch from "./GPTSearch";
 import Login from "./Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
