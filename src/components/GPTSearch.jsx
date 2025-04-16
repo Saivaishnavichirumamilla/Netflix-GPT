@@ -1,7 +1,13 @@
+import GPTSearchBar from "./GPTSearchBar";
+import GPTSuggestions from "./GPTSuggestions";
+import Header from "./Header";
+
 const GPTSearch = () => {
   return (
-    <div>
-      <h1>This is GPT search</h1>
+    <div className="relative bg-black min-h-screen">
+      <Header />
+      <GPTSearchBar />
+      <GPTSuggestions />
     </div>
   );
 };

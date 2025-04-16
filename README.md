@@ -34,9 +34,8 @@
 - Build Movie Card
 - TMDB Image CDN Url
 - Made the browse pagr amazing with Tailwind CSS
-- useTopRatedMoviesAndUpcoming movies custom hook
-- Added title to movie card
-- GPT search feature
+- useTopRatedMoviesAndUpcoming
+- Created Search bar
 
 # Features
 

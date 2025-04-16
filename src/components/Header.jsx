@@ -45,7 +45,7 @@ const Header = () => {
           <div className="flex gap-4 items-center">
             <button
               onClick={handleGPTSearch}
-              className="bg-purple-600 text-white px-4 font-medium py-1 m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 "
+              className="bg-purple-600 text-white px-4 font-medium py-1 m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 focus-within:border-white focus-within:border-2"
             >
               Ask GPT
             </button>
