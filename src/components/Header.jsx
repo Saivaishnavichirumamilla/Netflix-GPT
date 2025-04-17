@@ -17,7 +17,6 @@ const Header = () => {
   const gptSearch = useSelector((store) => store.gpt.showGPTSearch);
 
   const handleOnChange = (e) => {
-    console.log(e.target.value);
     dispatch(changeLanguage(e.target.value));
   };
   const handleGPTSearch = () => {
