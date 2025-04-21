@@ -2,6 +2,7 @@ import { TMDB_IMG_CDN_URL } from "../utils/constants";
 
 const MovieCard = (props) => {
   const { posterPath, title } = props;
+  if (!posterPath) return null;
   return (
     <div>
       <div className="h-[180px] w-[300px] relative  ">
