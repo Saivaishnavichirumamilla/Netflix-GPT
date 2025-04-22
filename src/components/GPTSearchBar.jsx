@@ -32,12 +32,10 @@ const GPTSearchBar = () => {
       messages: [{ role: "user", content: GPTQuery }],
     });
 
-    console.log(GPTResults.choices?.[0]?.message?.content);
     const GPTMovies = GPTResults.choices?.[0]?.message?.content.split(",");
     //For each movie search for that i TMDB API
     const promiseArray = GPTMovies.map((movie) => searchMovies(movie));
     const movieResults = await Promise.all(promiseArray);
-    console.log(movieResults);
 
     dispatch(
       addGPTMovieResult({ movieNames: GPTMovies, movieRes: movieResults })
@@ -45,20 +43,20 @@ const GPTSearchBar = () => {
   };
 
   return (
-    <div className="mx-auto absolute top-40 left-70 w-3/5  ">
+    <div className="mx-auto absolute md:top-40 top-30 md:left-70 left-10 md:w-3/5 w-4/5 min-h-screen overflow-y-auto">
       <form
-        className=" flex gap-5 items-center "
+        className=" flex md:gap-5 gap-1 items-center "
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="search"
           placeholder={language[languageValue].askGPT + " ..."}
-          className="px-6 bg-white w-3/4 py-3 m-2 rounded-4xl outline-none hover:border-3 hover:border-red-600 focus-:border-3 focus-within:border-red-600 "
+          className="md:px-6 px-3 bg-white md:w-3/4 w-4/5 md:py-3 py-2 m-2 rounded-4xl outline-none hover:border-3 hover:border-red-600 focus-:border-3 focus-within:border-red-600 "
         />
         <button
           onClick={handleGPTSearchClick}
-          className="bg-red-600 py-2 px-5 rounded-4xl  text-lg font-bold text-white hover:bg-red-500 focus-within:bg-red-400"
+          className="bg-red-600 md:py-2 py-1 md:px-5 px-3 rounded-4xl  md:text-lg text-md font-bold text-white hover:bg-red-500 focus-within:bg-red-400"
         >
           {language[languageValue].search}
         </button>

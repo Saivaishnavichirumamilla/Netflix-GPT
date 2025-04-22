@@ -4,7 +4,7 @@ import Header from "./Header";
 
 const GPTSearch = () => {
   return (
-    <div className="relative bg-black min-h-screen">
+    <div className="relative bg-black min-h-screen ">
       <Header />
       <GPTSearchBar />
       <GPTSuggestions />

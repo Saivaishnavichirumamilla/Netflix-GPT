@@ -100,7 +100,7 @@ const Login = () => {
       <Header />
       <div className="relative">
         <img
-          className="bg-gradient-to-b from-black"
+          className="bg-gradient-to-b from-black bg-no-repeat bg-cover w-full h-screen object-cover"
           src={LOGIN_BG_POSTER}
           alt="background poster"
         />
@@ -108,9 +108,9 @@ const Login = () => {
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="absolute top-2/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-black/75 w-4/12 px-12 py-10 mt-14"
+          className="absolute md:top-2/5 top-65 left-50 md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-black/75 md:w-4/12 w-4/6 md:px-12 px-7 md:py-10 py-5 md:mt-14 mt-5"
         >
-          <h1 className="text-white p-2 m-2 text-2xl font-bold">
+          <h1 className="text-white m-2 md:p-2 md:m-2 md:text-2xl text-lg font-bold">
             {isSignIn ? "Sign In" : "Sign UP"}
           </h1>
           {!isSignIn && (
@@ -118,7 +118,7 @@ const Login = () => {
               ref={name}
               type="text"
               placeholder="User Name"
-              className="p-3 m-3 w-full text-white text-lg  border-[0.1px] border-gray-300 rounded"
+              className="md:p-3 md:m-3 m-2 p-1 w-full text-white md:text-lg text-sm border-[0.1px] border-gray-300 rounded"
             />
           )}
 
@@ -126,31 +126,33 @@ const Login = () => {
             ref={email}
             type="text"
             placeholder="Email address"
-            className="p-3 m-3 w-full text-white text-lg  border-[0.1px] border-gray-300 rounded"
+            className="md:p-3 md:m-3 m-2 p-1 w-full text-white md:text-lg text-sm border-[0.1px] border-gray-300 rounded"
           />
           <input
             ref={password}
             type="password"
             placeholder={isSignIn ? "Password" : "New Password"}
-            className="p-3 m-3 w-full text-white text-lg border-[0.5px] border-gray-300 rounded"
+            className="md:p-3 md:m-3 m-2 p-1 w-full text-white md:text-lg text-sm border-[0.1px] border-gray-300 rounded"
           />
           {!isSignIn && (
             <input
               ref={confirmPassword}
               type="password"
               placeholder=" Confirm Password"
-              className="p-3 m-3 w-full text-white text-lg border-[0.5px] border-gray-300 rounded"
+              className="md:p-3 md:m-3 m-2 p-1 w-full text-white md:text-lg text-sm border-[0.1px] border-gray-300 rounded"
             />
           )}
-          <p className="text-red-500 text-md m-3">{errorMessage}</p>
+          <p className="text-red-500 md:text-md md:m-3 text-sm m-3">
+            {errorMessage}
+          </p>
           <button
             onClick={handleButtonClick}
             type="submit"
-            className="p-2 m-3 w-full text-white bg-red-600  text-lg cursor-pointer"
+            className="md:p-2 p-1 m-2 md:m-3 w-full text-white bg-red-600  md:text-lg text-sm cursor-pointer"
           >
             {isSignIn ? "Sign In" : "Sign UP"}
           </button>
-          <p className="p-2 m-4 w-full text-white cursor-pointer">
+          <p className="md:p-2 md:m-4 p-1 m-2 w-full text-white cursor-pointer">
             {isSignIn ? "New to netflix?  " : "Already a member?"}
             <span className="font-bold" onClick={toggleSignIn}>
               {isSignIn ? "Sign Up Now" : "Sign In"}

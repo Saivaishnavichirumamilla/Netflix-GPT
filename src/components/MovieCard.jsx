@@ -5,9 +5,9 @@ const MovieCard = (props) => {
   if (!posterPath) return null;
   return (
     <div>
-      <div className="h-[180px] w-[300px] relative  ">
+      <div className="md:h-[180px] md:w-[300px] relative h-[90px] w-[180px] ">
         <img src={TMDB_IMG_CDN_URL + posterPath} alt="Movie poster" />
-        <div className="text-white font-sans text-xl font-bold py-1 absolute bg-black/40 px-2  rounded-br-lg rounded-tr-lg bottom-5 left-0">
+        <div className="text-white font-sans md:text-xl text-md md:font-bold md:py-1 absolute bg-black/40 md:px-2 px-1 rounded-br-lg rounded-tr-lg md:bottom-5 bottom-2 left-0">
           {title}
         </div>
       </div>

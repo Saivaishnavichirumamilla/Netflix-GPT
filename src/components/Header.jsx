@@ -45,15 +45,19 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="absolute z-10 w-screen h-16  bg-gradient-to-b from-black flex justify-between items-center ">
-      <img className="w-33 h-12 m-10 " src={LOGO} alt="logo" />
-      <div className="mr-6 m-3 ">
+    <div className="absolute z-10 md:w-screen h-16 w-screen  bg-gradient-to-b from-black flex justify-between items-center ">
+      <img
+        className="md:w-33 md:h-12 md:m-10 w-24 h-8 m-5"
+        src={LOGO}
+        alt="logo"
+      />
+      <div className="md:mr-6 md:m-3 mr-3 m-2 ">
         {user && (
-          <div className="flex gap-4 items-center">
+          <div className="flex items-center gap-2 md:gap-4 md:items-center">
             {gptSearch && (
               <select
                 onChange={handleOnChange}
-                className="bg-white font-bold text-black outline-none text-md py-1 m-2 px-2 rounded-xl"
+                className="bg-white font-bold text-black outline-none text-sm py-0 h-5 w-17 rounded-xl md:w-22 md:h-8 md:text-md md:py-1 md:m-2 md:px-2 md:rounded-xl"
               >
                 {Supported_Languages.map((language) => (
                   <option key={language.identifier} value={language.identifier}>
@@ -64,21 +68,23 @@ const Header = () => {
             )}
             <button
               onClick={handleGPTSearch}
-              className="bg-purple-600 text-white px-4 font-medium py-1 m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 focus-within:border-white focus-within:border-2"
+              className="bg-purple-600 m-1 text-sm px-2 text-white md:px-4 md:font-medium md:py-1 md:m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 focus-within:border-white focus-within:border-2"
             >
               {gptSearch ? "Home" : "Ask GPT"}
             </button>
-            <div className="text-white text-lg cursor-pointer">
-              {user?.name}
-            </div>
+            <div className="flex-col items-center md:flex justify-center ">
+              <div className="text-white md:text-lg md:cursor-pointer text-sm">
+                {user?.name}
+              </div>
 
-            <div>
-              <button
-                onClick={handleSignOut}
-                className="text-red-600 font-bold text-lg hover:text-white focus-within:text-white "
-              >
-                Sign out
-              </button>
+              <div>
+                <button
+                  onClick={handleSignOut}
+                  className="text-red-600 ml-2 font-bold md:text-lg text-sm hover:text-white focus-within:text-white "
+                >
+                  Sign out
+                </button>
+              </div>
             </div>
           </div>
         )}
