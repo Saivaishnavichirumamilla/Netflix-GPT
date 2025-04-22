@@ -41,6 +41,7 @@
 - Fetched GPT API and dispatched in gpt store
 - Dispatched movie results with TMDB searchMovies API into GPT store
 - Built GPT suggestions page
+- Memoization to prevent unnecessary re-renders
 
 # Features
 
