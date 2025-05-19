@@ -9,7 +9,11 @@ const MovieCard = (props) => {
     <div className="group relative md:h-[180px] md:w-[300px] h-[90px] w-[180px] cursor-pointer">
       {/* Movie Poster */}
       <img
-        src={TMDB_IMG_CDN_URL + posterPath}
+        src={
+          posterPath
+            ? TMDB_IMG_CDN_URL + posterPath
+            : "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+        }
         alt="Movie poster"
         className="h-full w-full object-cover rounded-md"
       />

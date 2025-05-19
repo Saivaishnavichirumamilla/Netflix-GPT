@@ -1,6 +1,6 @@
 import language from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import openAI from "../utils/openAI";
 import { API_OPTIONS } from "../utils/constants";
 import { addGPTMovieResult } from "../utils/gptSlice";
@@ -8,9 +8,12 @@ import { addGPTMovieResult } from "../utils/gptSlice";
 const GPTSearchBar = () => {
   const dispatch = useDispatch();
   const searchText = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
   const languageValue = useSelector((store) => store.config.lang);
 
   const handleGPTSearchClick = async () => {
+    setIsLoading(true); // Start loading
+
     const searchMovies = async (movie) => {
       const data = await fetch(
         "https://api.themoviedb.org/3/search/movie?query=" +
@@ -22,24 +25,29 @@ const GPTSearchBar = () => {
       return json.results;
     };
 
-    //Make an API call to GPT AI to get the results
-    const GPTQuery =
-      "Act as a movie recommendation system and give name of 5 movies which are" +
-      searchText.current.value +
-      ".I want the list as comma separated  example result is as Rangam,RRR,Hello,Ramudu Beemudu,Lakshyam";
-    const GPTResults = await openAI.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: GPTQuery }],
-    });
+    try {
+      const GPTQuery =
+        "Act as a movie recommendation system and give name of 5 movies which are " +
+        searchText.current.value +
+        ". I want the list as comma separated  example result is as Rangam,RRR,Hello,Ramudu Beemudu,Lakshyam";
 
-    const GPTMovies = GPTResults.choices?.[0]?.message?.content.split(",");
-    //For each movie search for that i TMDB API
-    const promiseArray = GPTMovies.map((movie) => searchMovies(movie));
-    const movieResults = await Promise.all(promiseArray);
+      const GPTResults = await openAI.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: GPTQuery }],
+      });
 
-    dispatch(
-      addGPTMovieResult({ movieNames: GPTMovies, movieRes: movieResults })
-    );
+      const GPTMovies = GPTResults.choices?.[0]?.message?.content.split(",");
+      const promiseArray = GPTMovies.map((movie) => searchMovies(movie));
+      const movieResults = await Promise.all(promiseArray);
+
+      dispatch(
+        addGPTMovieResult({ movieNames: GPTMovies, movieRes: movieResults })
+      );
+    } catch (error) {
+      console.error("GPT Search Error:", error);
+    }
+
+    setIsLoading(false); // End loading
   };
 
   return (
@@ -65,7 +73,11 @@ const GPTSearchBar = () => {
           onClick={handleGPTSearchClick}
           className=" cursor-pointer bg-red-600 md:py-2 py-1 md:px-5 px-3 rounded-4xl  md:text-lg text-md font-bold text-white hover:bg-red-500 focus-within:bg-red-400"
         >
-          {language[languageValue].search}
+          {isLoading ? (
+            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+          ) : (
+            language[languageValue].search
+          )}
         </button>
       </form>
     </div>
