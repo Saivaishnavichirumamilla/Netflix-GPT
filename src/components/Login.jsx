@@ -28,16 +28,22 @@ const Login = () => {
         password.current.value
       );
 
-      setErrorMessage(message);
+      if (message) {
+        setErrorMessage(message);
+        return;
+      }
     } else {
       const message = checkValidSignUpData(
         email.current.value,
         password.current.value,
         confirmPassword.current.value
       );
-      setErrorMessage(message);
+      if (message) {
+        setErrorMessage(message);
+        return;
+      }
     }
-    if (errorMessage) return;
+
     //Sign in /Sign Up logic
 
     if (!isSignIn) {
