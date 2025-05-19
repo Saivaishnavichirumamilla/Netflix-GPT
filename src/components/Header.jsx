@@ -68,9 +68,13 @@ const Header = () => {
             )}
             <button
               onClick={handleGPTSearch}
-              className="bg-purple-600 m-1 text-sm px-2 text-white md:px-4 md:font-medium md:py-1 md:m-2 rounded-lg cursor-pointer hover:border-white hover:border-2 focus-within:border-white focus-within:border-2"
+              className={`bg-gradient-to-r from-pink-500 via-purple-700  to-purple-600 
+              text-white text-sm md:text-base font-semibold cursor-pointer
+              px-4 py-2 md:px-6 md:py-2 rounded-full 
+              shadow-md hover:shadow-lg transition duration-300 ease-in-out 
+              transform hover:scale-105 focus:outline-none`}
             >
-              {gptSearch ? "Home" : "Ask GPT"}
+              {gptSearch ? "Home" : "🚀 Ask GPT"}
             </button>
             <div className="flex-col items-center md:flex justify-center ">
               <div className="text-white md:text-lg md:cursor-pointer text-sm">

@@ -52,7 +52,7 @@ const GPTSearchBar = () => {
 
   return (
     <div className="mx-auto mt-20 md:mt-40 w-4/5 md:w-3/5 ">
-      <div className="text-white p-[16px] mt-[10px] mb-[20px] md:text-lg text-sm ">
+      <div className="text-white  mt-[10px] mb-[20px] md:text-lg text-sm w-full ">
         <p>
           NetflixGPT is a smart movie helper. Just type what kind of movie you
           feel like watching — like "funny love story" or "action movie with
