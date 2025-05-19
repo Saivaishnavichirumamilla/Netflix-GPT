@@ -43,7 +43,14 @@ const GPTSearchBar = () => {
   };
 
   return (
-    <div className="mx-auto absolute md:top-40 top-30 md:left-70 left-10 md:w-3/5 w-4/5 min-h-screen overflow-y-auto">
+    <div className="mx-auto mt-20 md:mt-40 w-4/5 md:w-3/5 ">
+      <div className="text-white p-[16px] mt-[10px] mb-[20px] md:text-lg text-sm ">
+        <p>
+          NetflixGPT is a smart movie helper. Just type what kind of movie you
+          feel like watching — like "funny love story" or "action movie with
+          robots" — and it will suggest the best ones for you.
+        </p>
+      </div>
       <form
         className=" flex md:gap-5 gap-1 items-center "
         onSubmit={(e) => e.preventDefault()}
@@ -52,11 +59,11 @@ const GPTSearchBar = () => {
           ref={searchText}
           type="search"
           placeholder={language[languageValue].askGPT + " ..."}
-          className="md:px-6 px-3 bg-white md:w-3/4 w-4/5 md:py-3 py-2 m-2 rounded-4xl outline-none hover:border-3 hover:border-red-600 focus-:border-3 focus-within:border-red-600 "
+          className="md:px-6 px-3 bg-white md:w-3/4 w-4/5 md:py-3 py-2 m-2 text-black rounded-full outline-none hover:border-2 hover:border-red-600 focus:border-2 focus-within:border-red-600 cursor-pointer "
         />
         <button
           onClick={handleGPTSearchClick}
-          className="bg-red-600 md:py-2 py-1 md:px-5 px-3 rounded-4xl  md:text-lg text-md font-bold text-white hover:bg-red-500 focus-within:bg-red-400"
+          className=" cursor-pointer bg-red-600 md:py-2 py-1 md:px-5 px-3 rounded-4xl  md:text-lg text-md font-bold text-white hover:bg-red-500 focus-within:bg-red-400"
         >
           {language[languageValue].search}
         </button>

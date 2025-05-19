@@ -45,7 +45,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="absolute z-10 md:w-screen h-16 w-screen  bg-gradient-to-b from-black flex justify-between items-center ">
+    <div className="fixed top-0 w-full z-10 md:w-screen h-16  bg-gradient-to-b from-black flex justify-between items-center ">
       <img
         className="md:w-33 md:h-12 md:m-10 w-24 h-8 m-5"
         src={LOGO}
@@ -57,7 +57,7 @@ const Header = () => {
             {gptSearch && (
               <select
                 onChange={handleOnChange}
-                className="bg-white font-bold text-black outline-none text-sm py-0 h-5 w-17 rounded-xl md:w-22 md:h-8 md:text-md md:py-1 md:m-2 md:px-2 md:rounded-xl"
+                className="bg-white font-bold text-black outline-none text-sm py-0 h-5 w-17 rounded-xl md:w-22 md:h-8 md:text-md md:py-1 md:m-2 md:px-2 md:rounded-xl cursor-pointer"
               >
                 {Supported_Languages.map((language) => (
                   <option key={language.identifier} value={language.identifier}>
